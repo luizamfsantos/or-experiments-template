@@ -68,12 +68,16 @@ again after cloning or creating a new worktree.
   an index; see `docs/literature/README.md`
 - `formal/` — optional Lean 4 / Mathlib scaffold for formalizing paper
   theorems (delete if unused)
-- `configs/`, `Makefile` — placeholders for per-experiment configs and clean
-  targets as the project grows
+- `configs/` — `default.yaml` (project defaults) and `experiments/<name>/`
+  (per-experiment YAML, each required to carry a goal/hypothesis/
+  design-note/status `description:` block — see
+  `configs/experiments/README.md`); `Makefile` clean targets grow alongside
+  it
 - `notebooks/` — exploratory Jupyter notebooks (throwaway; promote real logic
   into `src/`)
-- `experiments/` — one subdirectory per experiment (driver script + config);
-  run outputs are gitignored, not committed. `compare_modeling/` is a working
+- `experiments/` — one subdirectory per experiment (driver script + config +
+  README with the same goal/hypothesis/design-note/status structure); run
+  outputs are gitignored, not committed. `compare_modeling/` is a working
   reference: runs the example model across multiple solvers and writes a
   comparison table.
 - `.github/workflows/ci.yml` — lint (`ruff`) + test (`pytest --cov=src`) on

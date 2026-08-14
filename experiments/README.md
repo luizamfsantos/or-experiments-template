@@ -35,6 +35,12 @@ later, instead of just "a script that ran once." Cover:
 Update the status and add a **Result** section once the experiment has run;
 don't leave the note as pre-registration only.
 
+The same four things (goal, hypothesis, design note, status) also belong in
+a `description:` block in the experiment's YAML config under
+`configs/experiments/<name>/` — see `configs/experiments/README.md`. Keep
+that version short; this README is where it's fine to go long, add
+diagrams, and hold the **Result** section.
+
 ## Index
 
 One line per experiment, updated as status changes:
