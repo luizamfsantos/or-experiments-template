@@ -76,12 +76,15 @@ def _run(run_name: str, tags: Mapping[str, str]) -> Iterator[None]:
 
 
 def _run_tags(result: SolveResult, extra_tags: Mapping[str, str] | None) -> dict[str, str]:
-    return {
+    tags = {
         "status": result.status,
         "termination_condition": result.termination_condition,
         "solver": result.solver,
-        **(extra_tags or {}),
     }
+    if result.git_commit is not None:
+        tags["git_commit"] = result.git_commit
+    tags.update(extra_tags or {})
+    return tags
 
 
 def _log_params(params: Mapping[str, object]) -> None:
