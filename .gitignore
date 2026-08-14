@@ -24,10 +24,13 @@ docs/paper/*.blg
 # result files
 results/
 
-# data files
-data/generated
-data/instances
-data/processed
+# data files — ignore contents, keep the directory skeleton (.gitkeep, README)
+data/generated/*
+data/instances/*
+data/processed/*
+!data/generated/.gitkeep
+!data/instances/.gitkeep
+!data/processed/.gitkeep
 .DS_Store
 
 # env files

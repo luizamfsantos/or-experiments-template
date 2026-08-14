@@ -34,6 +34,9 @@ uv run python -m src.cli.main
 `scripts/hooks/pre-commit` into `.git/hooks/pre-commit`. It runs on every
 commit:
 
+- Blocks any staged file over 5MB (override per-commit with
+  `MAX_COMMIT_FILE_SIZE_MB=<n>`) — see `data/README.md` for why data
+  doesn't belong in git
 - `uv run nbstripout` on staged `.ipynb` files — strips cell outputs and
   re-stages them, so notebook outputs never land in git history
 - `uv run ruff format --check` on staged Python files
@@ -69,6 +72,9 @@ again after cloning or creating a new worktree.
   design-note/status `description:` block — see
   `configs/experiments/README.md`); `Makefile` clean targets grow alongside
   it
+- `data/` — `instances/`, `processed/`, `generated/`; contents are
+  gitignored (only the directory skeleton is tracked) — see `data/README.md`
+  for why, and where raw data that can't be regenerated should actually live
 - `notebooks/` — exploratory Jupyter notebooks (throwaway; promote real logic
   into `src/`)
 - `experiments/` — one subdirectory per experiment (driver script + config +

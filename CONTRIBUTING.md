@@ -53,6 +53,10 @@ for the exact message format and the list of `type` prefixes to choose from
 When you run `git commit`, a script runs automatically on the files you're
 committing (this is what `make install-hooks` set up):
 
+- It **blocks any file over 5MB**. This is almost always a sign a data file
+  or a results file snuck into the commit — see `data/README.md` for where
+  those actually belong. The error message tells you which file and how big
+  it is.
 - If you're committing a Jupyter notebook (`.ipynb`), it **strips the cell
   outputs** before committing and re-stages the cleaned version for you —
   no action needed, this just keeps run-specific data and image blobs out
