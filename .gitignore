@@ -1,0 +1,43 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+.pytest_cache/
+build/
+dist/
+wheels/
+*.egg-info
+.coverage
+
+# Virtual environments
+.venv
+
+# .tex compiler files
+*.aux
+*.fdb_latexmk
+*.fls
+docs/paper/*.log
+docs/paper/*.out
+docs/paper/*.gz
+docs/paper/*.bbl
+docs/paper/*.blg
+
+# result files
+results/
+
+# data files
+data/generated
+data/instances
+data/processed
+.DS_Store
+
+# env files
+.env
+
+# Lean/Lake build artifacts
+formal/.lake/
+*.bbl
+*.blg
+*.out
+*.synctex.gz
+paper.log
+**/.obsidian
