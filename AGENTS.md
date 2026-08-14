@@ -25,6 +25,7 @@ When making changes in this repository, agents should:
 * keep tests independent from direct solver execution by mocking solver calls — see `docs/conventions/testing.md`
 * ensure docs cover the supported workflow for running with the real solver
 * document changes in `docs/` as the implementation evolves when the work affects documented behavior, workflows, or architecture, creating new `.md` files there when needed
+* add an entry to `docs/agent-log/` for nontrivial work (features, bug investigations, refactors with tradeoffs) and update `docs/agent-log/README.md`'s index in the same commit — see `docs/conventions/agent-log.md`
 * add or update the matching Lean file under `formal/` and compile it whenever a theorem/proposition/lemma in `docs/papers/` is added or changed — see `formal/README.md` (drop this line if the project doesn't use `formal/`)
 * keep Python module headers short and current when editing tracked `.py` files — see `docs/conventions/module-headers.md`
 * run `uv run ruff format ...`, `uv run ruff check ...`, and relevant `uv run pytest ...` commands after broad Python edits
@@ -44,3 +45,4 @@ When making changes in this repository, agents should:
 * `docs/conventions/module-headers.md` — Python module docstring convention
 * `docs/conventions/function-design.md` — small, single-purpose function guidelines
 * `docs/conventions/testing.md` — solver mocking, coverage targets, lint/complexity commands
+* `docs/conventions/agent-log.md` — agent log entry format and naming convention
