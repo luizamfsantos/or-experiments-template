@@ -9,7 +9,10 @@ one shared running document.
 
 - Query the Semantic Scholar MCP tool first (`search_paper` /
   `search_paper_bulk`); fall back to WebSearch for preprints or venues it
-  doesn't index (e.g. INFORMS, EURO, IPCO proceedings).
+  doesn't index (e.g. INFORMS, EURO, IPCO proceedings). Configured via
+  `.mcp.json` at the repo root ([verri/semantic-scholar-mcp](https://github.com/verri/semantic-scholar-mcp))
+  — set `SEMANTIC_SCHOLAR_API_KEY` in your `.env` (copy `.env.example`) for
+  higher rate limits; the tool works unauthenticated too, just slower.
 - Settle the search strategy before running it: keywords/synonyms,
   inclusion/exclusion criteria (date range, venue quality, method family),
   and depth (how many works, forward/backward citation depth). Write that
