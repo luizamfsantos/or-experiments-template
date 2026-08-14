@@ -28,9 +28,7 @@ walkthrough, with `docs/glossary.md` for any unfamiliar terms.
    `AGENTS.md` bullet.
 
 ```bash
-uv sync
-make install-hooks   # one-time per clone — see "Pre-commit hook" below
-uv run pytest -q
+make setup            # one-time per clone — installs deps, hooks, runs tests
 uv run python -m src.cli.main
 ```
 
@@ -64,6 +62,8 @@ again after cloning or creating a new worktree.
 - `src/cli/` — a thin entrypoint tying config + solver together
 - `docs/conventions/` — commit format, module headers, function design,
   testing/mocking conventions
+- `docs/literature/` — one file per paper/source read for the project, plus
+  an index; see `docs/literature/README.md`
 - `formal/` — optional Lean 4 / Mathlib scaffold for formalizing paper
   theorems (delete if unused)
 - `configs/`, `Makefile` — placeholders for per-experiment configs and clean
@@ -78,6 +78,8 @@ again after cloning or creating a new worktree.
   push/PR to `main`
 - `.github/CODEOWNERS` — placeholder owners; fill in before enabling branch
   protection
+- `.github/PULL_REQUEST_TEMPLATE.md` — fill-in-the-blanks PR description
+  checklist
 
 ## What was intentionally left out
 

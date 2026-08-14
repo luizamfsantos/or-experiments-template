@@ -12,20 +12,17 @@ Install [uv](https://docs.astral.sh/uv/) (manages Python and dependencies
 for you), then from the repo root:
 
 ```bash
-uv sync              # installs everything the project needs
-make install-hooks   # sets up an automatic check that runs before each commit
+make setup
 ```
 
-Run `make install-hooks` again if you ever delete and re-clone the repo, or
-create a new git worktree — it doesn't carry over automatically.
+This installs everything the project needs, sets up an automatic check that
+runs before each commit, and runs the test suite so you know right away if
+something's wrong — you should see something like `15 passed` and no
+errors.
 
-Confirm it worked:
-
-```bash
-uv run pytest -q
-```
-
-You should see something like `9 passed` and no errors.
+Run `make setup` again (or just `make install-hooks`) if you ever delete and
+re-clone the repo, or create a new git worktree — none of this carries over
+automatically.
 
 ## 2. Making a change
 

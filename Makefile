@@ -1,6 +1,14 @@
-.PHONY: install-hooks clean-all
+.PHONY: setup install-hooks clean-all
 
-# One-time per-clone setup — see AGENTS.md.
+# One-command onboarding: installs dependencies, sets up the pre-commit
+# hook, and runs the test suite so you know right away if something's
+# wrong. See CONTRIBUTING.md.
+setup:
+	uv sync
+	@scripts/install-hooks.sh
+	uv run pytest -q
+
+# One-time per-clone setup — see AGENTS.md. Also runs as part of `make setup`.
 install-hooks:
 	@scripts/install-hooks.sh
 
