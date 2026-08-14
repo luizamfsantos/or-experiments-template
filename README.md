@@ -1,10 +1,6 @@
 # experiments-template
 
-A bare scaffold for optimization-research group projects, stripped down from
-an ECS-LC Benders-decomposition research repo. It keeps the reusable parts —
-Pyomo + Gurobi wiring, config loading, conventions, an optional Lean
-formal-proofs setup — and drops everything specific to that original
-problem.
+A bare scaffold for optimization-research group projects.
 
 New to the team or new to software engineering in general? Start with
 `CONTRIBUTING.md` instead of this file — it's a step-by-step, plain-English
@@ -87,10 +83,6 @@ again after cloning or creating a new worktree.
 - `.github/PULL_REQUEST_TEMPLATE.md` — fill-in-the-blanks PR description
   checklist
 
-## What was intentionally left out
+## Repository settings
 
-Branch protection itself is a repo-settings toggle done in GitHub, not a
-file — turn it on once CODEOWNERS has real owners. Everything else specific
-to the original ECS-LC problem (solver core, generation framework,
-execution/queue layer, experiment configs, papers workflow, experiment
-notes) was dropped — add back only what your new project actually needs.
+Branch protection itself is a repo-settings toggle done in GitHub — turn it on once CODEOWNERS has real owners. 
