@@ -51,8 +51,15 @@ for the exact message format and the list of `type` prefixes to choose from
 ### The commit will run some automatic checks
 
 When you run `git commit`, a script runs automatically on the files you're
-committing (this is what `make install-hooks` set up). It checks three
-things, in order, and stops your commit if any of them fail:
+committing (this is what `make install-hooks` set up):
+
+- If you're committing a Jupyter notebook (`.ipynb`), it **strips the cell
+  outputs** before committing and re-stages the cleaned version for you —
+  no action needed, this just keeps run-specific data and image blobs out
+  of git history.
+
+Then, for Python files, it checks three things, in order, and stops your
+commit if any of them fail:
 
 1. **Formatting** — your code doesn't match the project's standard style.
    Fix: run `uv run ruff format <the file it names>`, then `git add` and

@@ -35,13 +35,15 @@ uv run python -m src.cli.main
 ## Pre-commit hook
 
 `make install-hooks` (or `scripts/install-hooks.sh`) symlinks
-`scripts/hooks/pre-commit` into `.git/hooks/pre-commit`. It runs on staged
-Python files before every commit:
+`scripts/hooks/pre-commit` into `.git/hooks/pre-commit`. It runs on every
+commit:
 
-- `uv run ruff format --check`
-- `uv run ruff check`
-- `uv run radon cc -s -n B` — fails the commit if any function is below
-  complexity grade A
+- `uv run nbstripout` on staged `.ipynb` files — strips cell outputs and
+  re-stages them, so notebook outputs never land in git history
+- `uv run ruff format --check` on staged Python files
+- `uv run ruff check` on staged Python files
+- `uv run radon cc -s -n B` on staged Python files — fails the commit if any
+  function is below complexity grade A
 
 It's a per-clone setup step (git doesn't version `.git/hooks/`), so run it
 again after cloning or creating a new worktree.
