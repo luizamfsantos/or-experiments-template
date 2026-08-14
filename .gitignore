@@ -41,3 +41,10 @@ formal/.lake/
 *.synctex.gz
 paper.log
 **/.obsidian
+
+# notebooks
+.ipynb_checkpoints/
+
+# experiment outputs (keep experiment scripts/configs, drop their run artifacts)
+experiments/**/outputs/
+experiments/**/results/

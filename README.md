@@ -11,11 +11,14 @@ problem.
 1. Rename the project in `pyproject.toml`, `configs/default.yaml`, and
    (if using `formal/`) `formal/lakefile.toml`.
 2. Fill in the `TODO`s in `CLAUDE.md` with your actual problem statement.
-3. Replace `src/solver/example.py` with your real model, following the same
+3. Set real owners in `.github/CODEOWNERS` (currently `@TODO-set-owner`),
+   then turn on branch protection requiring the `CI / test` check and a
+   CODEOWNERS review.
+4. Replace `src/solver/example.py` with your real model, following the same
    Pyomo `ConcreteModel` → `SolverFactory("gurobi").solve(...)` pattern.
-4. Point `.env` (gitignored) at your Gurobi license — see
+5. Point `.env` (gitignored) at your Gurobi license — see
    `src/solver/README.md`.
-5. If you don't need Lean formal proofs, delete `formal/` and the matching
+6. If you don't need Lean formal proofs, delete `formal/` and the matching
    `AGENTS.md` bullet.
 
 ```bash
@@ -36,11 +39,19 @@ uv run python -m src.cli.main
   theorems (delete if unused)
 - `configs/`, `Makefile` — placeholders for per-experiment configs and clean
   targets as the project grows
+- `notebooks/` — exploratory Jupyter notebooks (throwaway; promote real logic
+  into `src/`)
+- `experiments/` — one subdirectory per experiment (driver script + config);
+  run outputs are gitignored, not committed
+- `.github/workflows/ci.yml` — lint (`ruff`) + test (`pytest --cov=src`) on
+  push/PR to `main`
+- `.github/CODEOWNERS` — placeholder owners; fill in before enabling branch
+  protection
 
 ## What was intentionally left out
 
-CI, branch protection, and CODEOWNERS were left for you to set up per the
-new project's hosting/team setup. Everything else specific to the original
-ECS-LC problem (solver core, generation framework, execution/queue layer,
-experiment configs, papers workflow, experiment notes) was dropped — add
-back only what your new project actually needs.
+Branch protection itself is a repo-settings toggle done in GitHub, not a
+file — turn it on once CODEOWNERS has real owners. Everything else specific
+to the original ECS-LC problem (solver core, generation framework,
+execution/queue layer, experiment configs, papers workflow, experiment
+notes) was dropped — add back only what your new project actually needs.
