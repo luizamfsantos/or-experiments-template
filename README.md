@@ -6,6 +6,10 @@ Pyomo + Gurobi wiring, config loading, conventions, an optional Lean
 formal-proofs setup — and drops everything specific to that original
 problem.
 
+New to the team or new to software engineering in general? Start with
+`CONTRIBUTING.md` instead of this file — it's a step-by-step, plain-English
+walkthrough, with `docs/glossary.md` for any unfamiliar terms.
+
 ## Getting started
 
 1. Rename the project in `pyproject.toml`, `configs/default.yaml`, and
@@ -46,6 +50,9 @@ again after cloning or creating a new worktree.
 
 ## What's here
 
+- `CONTRIBUTING.md` — plain-English, step-by-step workflow guide for anyone
+  new to git/software engineering; `docs/glossary.md` backs it with term
+  definitions
 - `src/config/` — YAML config loading via a typed `RunConfig` (pydantic)
 - `src/solver/` — solving approaches as sibling families, each reporting into
   the same `SolveResult` so they're directly comparable: `mip/` (Pyomo +

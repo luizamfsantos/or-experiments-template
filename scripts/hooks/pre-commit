@@ -29,6 +29,7 @@ complexity_issues=$(uv run radon cc -s -n B "${staged_py_files[@]}")
 if [ -n "$complexity_issues" ]; then
     echo "$complexity_issues" >&2
     echo "pre-commit: functions above complexity grade A found — simplify before committing." >&2
+    echo "pre-commit: see 'Fixing a complexity error' in CONTRIBUTING.md for what this means and how to fix it." >&2
     exit 1
 fi
 
