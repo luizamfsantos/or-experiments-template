@@ -6,7 +6,7 @@ import time
 
 import pyomo.environ as pyo
 
-from src.persistence import SolveResult, write_results_csv
+from src.persistence import SolveResult, configure_tracking, log_solve_result, write_results_csv
 from src.solver.mip.example import build_example_model, solve_example
 
 # Add/remove Pyomo-registered solver names to compare different backends
@@ -37,10 +37,14 @@ def run(solvers: list[str] = SOLVERS_TO_COMPARE) -> list[SolveResult]:
                 wall_time_seconds=wall_time_seconds,
             )
         )
+        log_solve_result(results[-1], tags={"family": "mip"})
     return results
 
 
 if __name__ == "__main__":
+    # No-ops unless MLFLOW_TRACKING_URI is set (or configure_tracking is
+    # called with an explicit uri) — see src/persistence/README.md.
+    configure_tracking(experiment_name="compare_modeling")
     results = run()
     write_results_csv(results, OUTPUT_PATH)
     for result in results:

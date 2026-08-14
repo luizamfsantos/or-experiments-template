@@ -16,6 +16,9 @@ dependencies = [
 viz = [
     "matplotlib>=3.10.8",
 ]
+tracking = [
+    "mlflow>=2.14.0",
+]
 
 [dependency-groups]
 dev = [
