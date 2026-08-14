@@ -1,4 +1,8 @@
-.PHONY: clean-all
+.PHONY: install-hooks clean-all
+
+# One-time per-clone setup — see AGENTS.md.
+install-hooks:
+	@scripts/install-hooks.sh
 
 # Add one `clean-<experiment>` target per experiment as they're added, e.g.:
 #   clean-my-experiment:

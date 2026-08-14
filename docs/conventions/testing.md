@@ -29,6 +29,11 @@ uv run radon cc -s -a src
 
 Code must stay in complexity grade A per `radon cc`.
 
+A pre-commit hook (`scripts/hooks/pre-commit`, installed once per clone via
+`make install-hooks`) runs `ruff format --check`, `ruff check`, and a
+`radon cc -n B` grade gate on staged Python files automatically — see
+`AGENTS.md`.
+
 ## Coverage targets
 
 Use risk-based coverage targets, not a single blanket number:

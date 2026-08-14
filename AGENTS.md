@@ -4,10 +4,19 @@
 
 This repository uses a consistent Git workflow for staging and committing changes. Keep commits focused, review the staged diff before committing, and use clear commit types. Full format, types, and staging rules: `docs/conventions/commits.md`.
 
+## One-time setup
+
+Run `make install-hooks` (or `scripts/install-hooks.sh`) once per clone. It
+installs a `pre-commit` git hook that runs `ruff format --check`,
+`ruff check`, and a `radon` complexity gate (grade A required) on staged
+Python files — see `scripts/hooks/pre-commit`. Without it, formatting/lint/
+complexity issues aren't caught until CI.
+
 ## Preferred behavior for agents
 
 When making changes in this repository, agents should:
 
+* verify the pre-commit hook is installed (`test -x .git/hooks/pre-commit`) and run `make install-hooks` if it isn't, before the first commit in a fresh clone or worktree
 * stage only the files relevant to the requested task
 * review staged changes before committing (`git status`, `git diff`, `git diff --staged`)
 * choose the most accurate commit type and split unrelated work into separate commits — see `docs/conventions/commits.md`

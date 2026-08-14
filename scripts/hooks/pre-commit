@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# Pre-commit gate: ruff format, ruff check, radon complexity (grade A required).
+# Installed via `make install-hooks` / `scripts/install-hooks.sh` — see AGENTS.md.
+set -euo pipefail
+
+staged_py_files=()
+while IFS= read -r file; do
+    [ -n "$file" ] && staged_py_files+=("$file")
+done < <(git diff --cached --name-only --diff-filter=ACMR -- '*.py')
+
+if [ ${#staged_py_files[@]} -eq 0 ]; then
+    exit 0
+fi
+
+echo "pre-commit: ruff format --check"
+if ! uv run ruff format --check "${staged_py_files[@]}"; then
+    echo "pre-commit: formatting issues found — run 'uv run ruff format' on the files above and re-stage." >&2
+    exit 1
+fi
+
+echo "pre-commit: ruff check"
+if ! uv run ruff check "${staged_py_files[@]}"; then
+    echo "pre-commit: lint issues found — fix and re-stage." >&2
+    exit 1
+fi
+
+echo "pre-commit: radon complexity (grade A required)"
+complexity_issues=$(uv run radon cc -s -n B "${staged_py_files[@]}")
+if [ -n "$complexity_issues" ]; then
+    echo "$complexity_issues" >&2
+    echo "pre-commit: functions above complexity grade A found — simplify before committing." >&2
+    exit 1
+fi
+
+exit 0

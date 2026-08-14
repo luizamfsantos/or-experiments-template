@@ -19,6 +19,9 @@ your actual model.
 # Install dependencies (Python 3.13+ required)
 uv sync
 
+# One-time per-clone setup: installs the pre-commit hook (ruff + radon gate)
+make install-hooks
+
 # Run tests
 uv run pytest -q
 
