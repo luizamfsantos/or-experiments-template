@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from src.config import load_config
-from src.solver import solve_example
+from src.solver.mip import solve_example
 
 
 def main() -> None:

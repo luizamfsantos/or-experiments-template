@@ -14,8 +14,10 @@ problem.
 3. Set real owners in `.github/CODEOWNERS` (currently `@TODO-set-owner`),
    then turn on branch protection requiring the `CI / test` check and a
    CODEOWNERS review.
-4. Replace `src/solver/example.py` with your real model, following the same
-   Pyomo `ConcreteModel` → `SolverFactory("gurobi").solve(...)` pattern.
+4. Replace `src/solver/mip/example.py` with your real model, following the
+   same Pyomo `ConcreteModel` → `SolverFactory(solver_name).solve(...)`
+   pattern. Add other solving approaches (CP-SAT, heuristics) as sibling
+   families under `src/solver/` — see `src/solver/README.md`.
 5. Point `.env` (gitignored) at your Gurobi license — see
    `src/solver/README.md`.
 6. If you don't need Lean formal proofs, delete `formal/` and the matching
@@ -30,8 +32,13 @@ uv run python -m src.cli.main
 ## What's here
 
 - `src/config/` — YAML config loading via a typed `RunConfig` (pydantic)
-- `src/solver/` — minimal Pyomo + Gurobi example, with the "mock the solver
-  in tests" convention already wired up
+- `src/solver/` — solving approaches as sibling families, each reporting into
+  the same `SolveResult` so they're directly comparable: `mip/` (Pyomo +
+  Gurobi/HiGHS, with a working example), `cpsat/` and `heuristics/`
+  (placeholders — see their READMEs). The "mock the solver in tests"
+  convention is already wired up in `mip/`.
+- `src/persistence/` — `SolveResult` schema + CSV writer, the common shape
+  every solver/formulation comparison reports into
 - `src/cli/` — a thin entrypoint tying config + solver together
 - `docs/conventions/` — commit format, module headers, function design,
   testing/mocking conventions
@@ -42,7 +49,9 @@ uv run python -m src.cli.main
 - `notebooks/` — exploratory Jupyter notebooks (throwaway; promote real logic
   into `src/`)
 - `experiments/` — one subdirectory per experiment (driver script + config);
-  run outputs are gitignored, not committed
+  run outputs are gitignored, not committed. `compare_modeling/` is a working
+  reference: runs the example model across multiple solvers and writes a
+  comparison table.
 - `.github/workflows/ci.yml` — lint (`ruff`) + test (`pytest --cov=src`) on
   push/PR to `main`
 - `.github/CODEOWNERS` — placeholder owners; fill in before enabling branch

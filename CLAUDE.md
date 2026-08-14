@@ -23,11 +23,11 @@ uv sync
 uv run pytest -q
 
 # Run a single test file
-uv run pytest tests/solver/test_example.py
+uv run pytest tests/solver/mip/test_example.py
 
 # Format and lint Python files
-uv run ruff format src tests
-uv run ruff check src tests
+uv run ruff format src tests experiments
+uv run ruff check src tests experiments
 
 # Demo solve (default config)
 uv run python -m src.cli.main

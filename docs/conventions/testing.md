@@ -15,15 +15,15 @@ by the example solver module.
 
 ```bash
 uv run pytest -q
-uv run pytest tests/solver/test_example.py
+uv run pytest tests/solver/mip/test_example.py
 uv run pytest --cov=src
 ```
 
 Run after broad Python edits:
 
 ```bash
-uv run ruff format src tests
-uv run ruff check src tests
+uv run ruff format src tests experiments
+uv run ruff check src tests experiments
 uv run radon cc -s -a src
 ```
 
